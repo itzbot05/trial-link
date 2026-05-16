@@ -12,10 +12,10 @@
             font-family: 'Arial Narrow', Arial, sans-serif;
         }
         
+        /* ১ম ইমেজের মতো রিয়েলিস্টিক স্টুডিও ব্যাকগ্রাউন্ড ও শ্যাডো ইফেক্ট */
         body {
-            background-color: #e4e9ed; /* ১ম ছবির সেই অরিজিনাল ব্যাকগ্রাউন্ড কালার */
+            background: radial-gradient(circle, #f4f7f9 20%, #ccd4da 100%);
             overflow-x: hidden;
-            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,60 +23,23 @@
             padding: 15px;
         }
 
-        /* --- মানি ইফেক্ট ফিক্স (যা শুধুমাত্র মেইন কার্ডের পেছনে ভাসবে) --- */
-        .money-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1; /* কার্ডের পেছনে থাকবে */
-        }
-        .bill {
-            position: absolute;
-            width: 45px;
-            height: 22px;
-            background: #a3cb8c;
-            border: 1px solid #6b9c54;
-            border-radius: 2px;
-            opacity: 0.35;
-            animation: fall linear infinite;
-        }
-        .bill::after {
-            content: '$';
-            position: absolute;
-            font-size: 11px;
-            font-weight: bold;
-            color: #436a31;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-        @keyframes fall {
-            0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
-            15% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-        .bill:nth-child(1) { left: 8%; animation-duration: 6s; animation-delay: 0s; }
-        .bill:nth-child(2) { left: 22%; animation-duration: 8s; animation-delay: 2s; }
-        .bill:nth-child(3) { left: 40%; animation-duration: 5s; animation-delay: 1s; }
-        .bill:nth-child(4) { left: 78%; animation-duration: 7s; animation-delay: 3s; }
-        .bill:nth-child(5) { left: 92%; animation-duration: 6s; animation-delay: 0.5s; }
-
-        /* --- ১ম ইমেজের অরিজিনাল ফিক্সড মোবাইল কার্ড --- */
+        /* --- মোবাইল ল্যান্ডিং পেজ কন্টেইনার (হুবহু ১ম ইমেজের লুক) --- */
         .phone-mockup {
             width: 100%;
-            max-width: 360px;
-            background: #ffffff; /* ভেতরের অরিজিনাল সাদা ব্যাকগ্রাউন্ড */
-            border: 1px solid #b0bec5;
-            box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+            max-width: 365px;
+            background: #ffffff;
+            border: 1px solid #b5bfc6;
+            
+            /* এই সফট শ্যাডোটা ব্যাকগ্রাউন্ডের সাথে পেজটাকে ন্যাচারালভাবে মিক্স করবে */
+            box-shadow: 0 20px 40px rgba(165, 178, 189, 0.45), 
+                        0 5px 15px rgba(0, 0, 0, 0.05);
+            
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            z-index: 10; /* টাকার ইফেক্ট যেন এটার ওপরে না আসে */
         }
         
+        /* টপ ব্ল্যাক বার */
         .top-bar {
             background-color: #212121;
             color: #ffffff;
@@ -84,18 +47,20 @@
             padding: 14px;
             font-size: 15px;
             font-weight: bold;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
         }
 
+        /* কন্টেন্ট এরিয়া */
         .content {
             padding: 22px 16px;
             text-align: center;
         }
 
-        /* আপনার পছন্দের শর্টকাট হেডলাইন */
+        /* আপনার পছন্দের সেই শর্ট হেডলাইন */
         .main-headline {
-            font-size: 40px;
-            font-weight: bold;
+            font-size: 38px;
+            font-weight: 900;
             color: #1a1a1a;
             line-height: 1.05;
             text-transform: uppercase;
@@ -103,13 +68,13 @@
             letter-spacing: -0.5px;
         }
 
-        /* মিডেল সেকশন লেআউট */
+        /* মিডেল লেআউট ফিক্স */
         .middle-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 22px;
-            padding: 0 5px;
+            margin-bottom: 24px;
+            padding: 0 4px;
         }
         
         .icon-area {
@@ -117,7 +82,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
         
         .timer-area {
@@ -140,7 +105,7 @@
         }
         
         .time-box {
-            background-color: #244d6c; /* ১ম ছবির সেই নেভি ব্লু */
+            background-color: #244d6c; /* ১ম ছবির সেই অরিজিনাল ব্লু */
             color: #ffffff;
             border-radius: 4px;
             min-width: 42px;
@@ -174,15 +139,15 @@
             color: #ffffff;
             font-size: 11px;
             font-weight: bold;
-            padding: 5px 0;
+            padding: 6px 0;
             border-radius: 25px;
             width: 100%;
             display: block;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             text-transform: uppercase;
         }
 
-        /* --- ১ম ইমেজের সেই অরিজিনাল বাটন স্টাইল --- */
+        /* --- ১ম ইমেজের সেই অরিজিনাল বাটন ডিজাইন --- */
         .btn-blue {
             background-color: #1e4b6c;
             color: #ffffff;
@@ -255,14 +220,6 @@
 </head>
 <body>
 
-    <div class="money-container">
-        <div class="bill"></div>
-        <div class="bill"></div>
-        <div class="bill"></div>
-        <div class="bill"></div>
-        <div class="bill"></div>
-    </div>
-
     <div class="phone-mockup">
         <div class="top-bar">OFFICIAL GLOBAL GIVEAWAY</div>
 
@@ -290,7 +247,7 @@
                         <div class="timer-colon">:</div>
                         <div class="time-box"><span class="time-digits" id="mins">45</span><span class="time-label">Mins:</span></div>
                         <div class="timer-colon">:</div>
-                        <div class="time-box"><span class="time-digits" id="secs">58</span><span class="time-label">Secs</span></div>
+                        <div class="time-box"><span class="time-digits" id="secs">53</span><span class="time-label">Secs</span></div>
                     </div>
                 </div>
             </div>
@@ -317,7 +274,7 @@
 
     <script>
         // লাইভ টাইমার স্ক্রিপ্ট
-        let totalSeconds = (2 * 24 * 3600) + (45 * 60) + 58;
+        let totalSeconds = (2 * 24 * 3600) + (45 * 60) + 53;
         function updateTimer() {
             if(totalSeconds <= 0) totalSeconds = 200000;
             totalSeconds--;
