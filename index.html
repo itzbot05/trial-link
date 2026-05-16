@@ -13,7 +13,7 @@
         }
         
         body {
-            background-color: #e4e9ed; /* ১ম ছবির সেই হালকা অফ-হোয়াইট/গ্রে ব্যাকগ্রাউন্ড */
+            background-color: #e4e9ed; /* ১ম ছবির সেই অরিজিনাল ব্যাকগ্রাউন্ড কালার */
             overflow-x: hidden;
             position: relative;
             display: flex;
@@ -23,7 +23,7 @@
             padding: 15px;
         }
 
-        /* --- মানি ইফেক্ট কন্টেইনার (কার্ডের পেছনে থাকবে) --- */
+        /* --- মানি ইফেক্ট ফিক্স (যা শুধুমাত্র মেইন কার্ডের পেছনে ভাসবে) --- */
         .money-container {
             position: fixed;
             top: 0;
@@ -31,7 +31,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 1; /* কার্ডের পেছনে থাকবে */
         }
         .bill {
             position: absolute;
@@ -65,16 +65,16 @@
         .bill:nth-child(4) { left: 78%; animation-duration: 7s; animation-delay: 3s; }
         .bill:nth-child(5) { left: 92%; animation-duration: 6s; animation-delay: 0.5s; }
 
-        /* --- ১ম ইমেজের হুবহু ফিক্সড মোবাইল কার্ড --- */
+        /* --- ১ম ইমেজের অরিজিনাল ফিক্সড মোবাইল কার্ড --- */
         .phone-mockup {
             width: 100%;
             max-width: 360px;
-            background: #ffffff; /* কার্ডের ভেতরের ব্যাকগ্রাউন্ড হুবহু সাদা */
+            background: #ffffff; /* ভেতরের অরিজিনাল সাদা ব্যাকগ্রাউন্ড */
             border: 1px solid #b0bec5;
             box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
             display: flex;
             flex-direction: column;
-            z-index: 10; /* কার্ডটি টাকার ইফেক্টের উপরে থাকবে */
+            z-index: 10; /* টাকার ইফেক্ট যেন এটার ওপরে না আসে */
         }
         
         .top-bar {
@@ -92,7 +92,7 @@
             text-align: center;
         }
 
-        /* শর্টকাট প্রফেশনাল হেডলাইন */
+        /* আপনার পছন্দের শর্টকাট হেডলাইন */
         .main-headline {
             font-size: 40px;
             font-weight: bold;
@@ -182,7 +182,7 @@
             text-transform: uppercase;
         }
 
-        /* --- ১ম ইমেজের সেই অরিজিনাল ব্লু বাটন --- */
+        /* --- ১ম ইমেজের সেই অরিজিনাল বাটন স্টাইল --- */
         .btn-blue {
             background-color: #1e4b6c;
             color: #ffffff;
@@ -198,7 +198,6 @@
             line-height: 1.2;
         }
 
-        /* --- ১ম ইমেজের সেই অরিজিনাল মেটালিক গ্রে বাটন --- */
         .btn-claim-box {
             background: linear-gradient(180deg, #b0bec5 0%, #78909c 100%);
             border: 1px solid #90a4ae;
