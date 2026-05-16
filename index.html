@@ -12,34 +12,62 @@
             font-family: 'Arial Narrow', Arial, sans-serif;
         }
         
-        /* ১ম ইমেজের মতো রিয়েলিস্টিক স্টুডিও ব্যাকগ্রাউন্ড ও শ্যাডো ইফেক্ট */
+        /* পুরো স্ক্রিনটাই একটা সিঙ্গেল পেজ - কোন আলাদা বক্স নাই */
         body {
-            background: radial-gradient(circle, #f4f7f9 20%, #ccd4da 100%);
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: radial-gradient(circle, #ffffff 30%, #e4e9ed 100%);
             min-height: 100vh;
-            padding: 15px;
-        }
-
-        /* --- মোবাইল ল্যান্ডিং পেজ কন্টেইনার (হুবহু ১ম ইমেজের লুক) --- */
-        .phone-mockup {
-            width: 100%;
-            max-width: 365px;
-            background: #ffffff;
-            border: 1px solid #b5bfc6;
-            
-            /* এই সফট শ্যাডোটা ব্যাকগ্রাউন্ডের সাথে পেজটাকে ন্যাচারালভাবে মিক্স করবে */
-            box-shadow: 0 20px 40px rgba(165, 178, 189, 0.45), 
-                        0 5px 15px rgba(0, 0, 0, 0.05);
-            
-            overflow: hidden;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 0 30px 0;
+            position: relative;
+            overflow-x: hidden;
         }
-        
-        /* টপ ব্ল্যাক বার */
+
+        /* --- পুরো পেজ জুড়ে ব্যাকগ্রাউন্ডে টাকার লাইভ ইফেক্ট --- */
+        .money-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1; /* এটা কন্টেন্টের নিচে থাকবে */
+        }
+        .bill {
+            position: absolute;
+            width: 45px;
+            height: 22px;
+            background: #a3cb8c;
+            border: 1px solid #6b9c54;
+            border-radius: 2px;
+            opacity: 0.25;
+            animation: fall linear infinite;
+        }
+        .bill::after {
+            content: '$';
+            position: absolute;
+            font-size: 11px;
+            font-weight: bold;
+            color: #436a31;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .bill:nth-child(1) { left: 10%; animation-duration: 7s; animation-delay: 0s; }
+        .bill:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
+        .bill:nth-child(3) { left: 50%; animation-duration: 6s; animation-delay: 1s; }
+        .bill:nth-child(4) { left: 75%; animation-duration: 8s; animation-delay: 3s; }
+        .bill:nth-child(5) { left: 90%; animation-duration: 7s; animation-delay: 0.5s; }
+
+        /* --- ল্যান্ডিং পেজের কন্টেন্ট লেআউট (সব এক লাইনে সরাসরি পেজে থাকবে) --- */
         .top-bar {
             background-color: #212121;
             color: #ffffff;
@@ -49,26 +77,29 @@
             font-weight: bold;
             letter-spacing: 0.8px;
             text-transform: uppercase;
+            width: 100%;
+            z-index: 10;
         }
 
-        /* কন্টেন্ট এরিয়া */
-        .content {
-            padding: 22px 16px;
+        .main-container {
+            width: 100%;
+            max-width: 365px; /* মোবাইলের জন্য পারফেক্ট সাইজ */
+            padding: 25px 16px;
             text-align: center;
+            z-index: 10; /* কন্টেন্ট যেন টাকার ওপরে ক্লিয়ার থাকে */
         }
 
-        /* আপনার পছন্দের সেই শর্ট হেডলাইন */
         .main-headline {
             font-size: 38px;
             font-weight: 900;
             color: #1a1a1a;
             line-height: 1.05;
             text-transform: uppercase;
-            margin-bottom: 22px;
+            margin-bottom: 24px;
             letter-spacing: -0.5px;
         }
 
-        /* মিডেল লেআউট ফিক্স */
+        /* আইকন ও টাইমার সেকশন */
         .middle-section {
             display: flex;
             align-items: center;
@@ -143,7 +174,7 @@
             border-radius: 25px;
             width: 100%;
             display: block;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
 
@@ -172,7 +203,7 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .claim-word {
@@ -196,10 +227,10 @@
 
         /* ফুটার */
         .footer-section {
-            background-color: #f1f5f9;
-            padding: 15px;
             text-align: center;
-            border-top: 1px solid #e2e8f0;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 1px solid #cfd8dc;
         }
         .cpa-badge {
             background-color: #212121;
@@ -220,48 +251,54 @@
 </head>
 <body>
 
-    <div class="phone-mockup">
-        <div class="top-bar">OFFICIAL GLOBAL GIVEAWAY</div>
+    <div class="money-container">
+        <div class="bill"></div>
+        <div class="bill"></div>
+        <div class="bill"></div>
+        <div class="bill"></div>
+        <div class="bill"></div>
+    </div>
 
-        <div class="content">
-            <h1 class="main-headline">
-                WIN $5,000<br>CASH!
-            </h1>
+    <div class="top-bar">OFFICIAL GLOBAL GIVEAWAY</div>
 
-            <div class="middle-section">
-                <div class="icon-area">
-                    <svg width="45" height="25" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="3">
-                        <path d="M23 6l-9.5 9.5-5-5L1 18"></path>
-                        <path d="M17 6h6v6"></path>
-                    </svg>
-                    <svg width="60" height="32" viewBox="0 0 24 24">
-                        <rect x="2" y="5" width="20" height="13" rx="2" fill="#78909c"/>
-                        <circle cx="12" cy="11" r="3" fill="#cfd8dc"/>
-                    </svg>
-                </div>
+    <div class="main-container">
+        <h1 class="main-headline">
+            WIN $5,000<br>CASH!
+        </h1>
 
-                <div class="timer-area">
-                    <p class="timer-title">Time Remaining:</p>
-                    <div class="timer-wrapper">
-                        <div class="time-box"><span class="time-digits" id="days">02</span><span class="time-label">Days:</span></div>
-                        <div class="timer-colon">:</div>
-                        <div class="time-box"><span class="time-digits" id="mins">45</span><span class="time-label">Mins:</span></div>
-                        <div class="timer-colon">:</div>
-                        <div class="time-box"><span class="time-digits" id="secs">53</span><span class="time-label">Secs</span></div>
-                    </div>
-                </div>
+        <div class="middle-section">
+            <div class="icon-area">
+                <svg width="45" height="25" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="3">
+                    <path d="M23 6l-9.5 9.5-5-5L1 18"></path>
+                    <path d="M17 6h6v6"></path>
+                </svg>
+                <svg width="60" height="32" viewBox="0 0 24 24">
+                    <rect x="2" y="5" width="20" height="13" rx="2" fill="#78909c"/>
+                    <circle cx="12" cy="11" r="3" fill="#cfd8dc"/>
+                </svg>
             </div>
 
-            <div class="notice-tag">Entries Filling Fast - Act Now!</div>
-
-            <button class="btn-blue" onclick="goToOffer()">
-                Get Free Bonus Entries & Prize Entry
-            </button>
-
-            <div class="btn-claim-box" onclick="goToOffer()">
-                <div class="claim-word">Claim</div>
-                <div class="claim-text">Claim Your<br>Cash Prize Now!</div>
+            <div class="timer-area">
+                <p class="timer-title">Time Remaining:</p>
+                <div class="timer-wrapper">
+                    <div class="time-box"><span class="time-digits" id="days">02</span><span class="time-label">Days:</span></div>
+                    <div class="timer-colon">:</div>
+                    <div class="time-box"><span class="time-digits" id="mins">45</span><span class="time-label">Mins:</span></div>
+                    <div class="timer-colon">:</div>
+                    <div class="time-box"><span class="time-digits" id="secs">53</span><span class="time-label">Secs</span></div>
+                </div>
             </div>
+        </div>
+
+        <div class="notice-tag">Entries Filling Fast - Act Now!</div>
+
+        <button class="btn-blue" onclick="goToOffer()">
+            Get Free Bonus Entries & Prize Entry
+        </button>
+
+        <div class="btn-claim-box" onclick="goToOffer()">
+            <div class="claim-word">Claim</div>
+            <div class="claim-text">Claim Your<br>Cash Prize Now!</div>
         </div>
 
         <div class="footer-section">
